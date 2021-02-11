@@ -18,3 +18,11 @@ The URL should be the root URL for your inContact domain. For example, to have P
     Connect-IC 'https://au1.nice-incontact.com' -Credential (Get-Credential)	
 
 Note that the token retrieved from Connect-IC expires in one hour, and we do not currently support refreshing the token automatically.
+
+## Disconnecting
+
+To ensure the inContact token is not preserved in your session, you can disconnect from the inContact instance using this command:
+
+    Disconnect-IC
+
+Note that no network connections are maintained that need to be cleaned up with this command. It's only used to clear the locally cached URI and token.
