@@ -69,7 +69,7 @@
     # NestedModules = @()
     
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-    FunctionsToExport = @('Connect-IC', 'Disconnect-IC', 'Get-ICAddressBook', 'Get-ICAddressBookEntry', 'Get-ICAgent', 'Get-ICAgentSkill', 'Get-ICCampaign', 'Get-ICDisposition', 'Get-ICGroup', 'Get-ICSkill', 'Get-ICTeam', 'Get-ICTeamAgent', 'New-ICAddressBookEntry', 'New-ICAgent', 'New-ICAgentSkill', 'Remove-ICAddressBookEntry', 'Remove-ICAgentSkill', 'Set-ICAddressBookEntry', 'Set-ICAgentSkill')
+    FunctionsToExport = @('Connect-IC', 'Disconnect-IC', 'Get-ICAddressBook', 'Get-ICAddressBookEntry', 'Get-ICAgent', 'Get-ICAgentSkill', 'Get-ICCampaign', 'Get-ICDisposition', 'Get-ICGroup', 'Get-ICSkill', 'Get-ICTeam', 'Get-ICTeamAgent', 'New-ICAddressBookEntry', 'New-ICAgent', 'New-ICAgentSkill', 'Remove-ICAddressBookEntry', 'Remove-ICAgentSkill', 'Set-ICAddressBookEntry', 'Set-ICAgent', 'Set-ICAgentSkill')
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     CmdletsToExport = @()

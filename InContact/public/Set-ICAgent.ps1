@@ -1,28 +1,29 @@
-function New-IcAgent {
+function Set-IcAgent {
     [CmdletBinding(SupportsShouldProcess)]
     param (
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('Id')]
+        [string] $AgentId,
+
+        [Parameter(ValueFromPipelineByPropertyName)]
+        [string] $TeamId,
+
+        [Parameter(ValueFromPipelineByPropertyName)]
         [string] $Username,
 
-        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
-        [securestring] $Password,
-
-        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Parameter(ValueFromPipelineByPropertyName)]
         [string] $EmailAddress,
 
-        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Parameter(ValueFromPipelineByPropertyName)]
         [string] $FirstName,
 
         [Parameter(ValueFromPipelineByPropertyName)]
         [string] $MiddleName,
 
-        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Parameter(ValueFromPipelineByPropertyName)]
         [string] $LastName,
 
         [Parameter(ValueFromPipelineByPropertyName)]
-        [string] $TeamId,
-
-        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         [int] $ProfileId,
 
         [Parameter(ValueFromPipelineByPropertyName)]
@@ -62,13 +63,9 @@ function New-IcAgent {
     }
 
     Process {
-        # Extract plain text password from credential
-        $marshal = [Runtime.InteropServices.Marshal]
-        $pw = $marshal::PtrToStringAuto( $marshal::SecureStringToBSTR($Password) )
-
         $agent = @{
+            agentId = $AgentId
             userName = $Username
-            password = $pw
             emailAddress = $EmailAddress
             firstName = $FirstName
             middleName = $MiddleName
