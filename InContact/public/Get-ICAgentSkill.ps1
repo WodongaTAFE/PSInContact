@@ -5,6 +5,7 @@ function Get-ICAgentSkill {
         [Parameter(ValueFromPipelineByPropertyName)]
         [string] $AgentId,
 
+        [Alias('SearchText')]
         [string] $SearchString
     )
 

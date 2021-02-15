@@ -4,6 +4,7 @@ function Get-ICAddressBookEntry {
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         [int] $AddressBookId,
 
+        [Alias('SearchText')]
         [string] $SearchString
     )
 

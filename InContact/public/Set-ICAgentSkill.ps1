@@ -11,7 +11,8 @@ function Set-IcAgentSkill {
         [int] $Proficiency,
 
         [Parameter(ValueFromPipelineByPropertyName)]
-        [bool] $Active
+        [Alias('Active')]
+        [bool] $IsActive
     )
 
     Begin {
@@ -19,7 +20,7 @@ function Set-IcAgentSkill {
         $token = $PsCmdlet.SessionState.PSVariable.GetValue("_ICToken")
         
         if (!$url -or !$token) {
-            Throw "You must call the Connect-IC cmdlet before calling any other cmdlets."
+            throw "You must call the Connect-IC cmdlet before calling any other cmdlets."
         }
 
         $headers = @{
@@ -33,18 +34,18 @@ function Set-IcAgentSkill {
     Process {
         $skill = @{
             skillId = $SkillId
+            proficiency = $Proficiency
+            isActive = $IsActive
         }
         
-        if ($PSBoundParameters.ContainsKey('active')) {
-            Write-Verbose "Active was $Active"
-            $skill.isActive = $Active
+        # strip out all the properties that weren't provided as parameters
+        $k = @($skill.Keys)
+        $k | ForEach-Object {
+            if (-not $PSBoundParameters.ContainsKey($_)) {
+                $skill.Remove($_)
+            }
         }
-
-        if ($Proficiency) {
-            Write-Verbose 'Proficiency was specified!'
-            $skill.proficiency = $Proficiency
-        }
-
+        
         $skills += $skill
     }
 

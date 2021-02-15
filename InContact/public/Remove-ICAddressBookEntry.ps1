@@ -13,7 +13,7 @@ function Remove-ICAddressBookEntry {
         $token = $PsCmdlet.SessionState.PSVariable.GetValue("_ICToken")
         
         if (!$url -or !$token) {
-            Throw "You must call the Connect-IC cmdlet before calling any other cmdlets."
+            throw "You must call the Connect-IC cmdlet before calling any other cmdlets."
         }
 
         $headers = @{

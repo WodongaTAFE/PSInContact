@@ -6,9 +6,11 @@ function Get-ICAgent {
         [string] $AgentId,
 
         [Parameter(ParameterSetName='notid')]
-        [bool] $Active,
+        [Alias('Active')]
+        [bool] $IsActive,
 
         [Parameter(ParameterSetName='notid')]
+        [Alias('SearchText')]
         [string] $SearchString
     )
 
@@ -32,8 +34,8 @@ function Get-ICAgent {
         }
         else {
             $path = '/inContactAPI/services/v20.0/agents?'
-            if ($Active) {
-                $path += "isActive=$Active&"
+            if ($PSBoundParameters.ContainsKey('IsActive')) {
+                $path += "isActive=$IsActive&"
             }
             if ($SearchString) {
                 $path += "searchString=$SearchString&"

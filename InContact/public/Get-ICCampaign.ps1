@@ -2,8 +2,10 @@
 function Get-ICCampaign {
     [CmdletBinding()]
     param (
-        [bool] $Active,
+        [Alias('Active')]
+        [bool] $IsActive,
 
+        [Alias('SearchText')]
         [string] $SearchString
     )
 
@@ -23,8 +25,8 @@ function Get-ICCampaign {
 
     Process {
         $path = '/inContactAPI/services/v20.0/campaigns?'
-        if ($Active) {
-            $path += "isActive=$Active&"
+        if ($PSBoundParameters.ContainsKey('IsActive')) {
+            $path += "isActive=$IsActive&"
         }
         if ($SearchString) {
             $path += "searchString=$SearchString&"

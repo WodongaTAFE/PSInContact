@@ -2,8 +2,10 @@
 function Get-ICSkill {
     [CmdletBinding()]
     param (
-        [bool] $Active,
+        [Alias('Active')]
+        [bool] $IsActive,
 
+        [Alias('SearchText')]
         [string] $SearchString
     )
 
@@ -12,10 +14,9 @@ function Get-ICSkill {
         $token = $PsCmdlet.SessionState.PSVariable.GetValue("_ICToken")
         
         if (!$url -or !$token) {
-            Throw "You must call the Connect-IC cmdlet before calling any other cmdlets."
+            throw "You must call the Connect-IC cmdlet before calling any other cmdlets."
         }
 
-        Write-Verbose $url
         $headers = @{
             Authorization = "Bearer $token"
             Accept = 'application/json'
@@ -24,8 +25,8 @@ function Get-ICSkill {
 
     Process {
         $path = '/inContactAPI/services/v20.0/skills?'
-        if ($Active) {
-            $path += "isActive=$Active&"
+        if ($PSBoundParameters.ContainsKey('IsActive')) {
+            $path += "isActive=$IsActive&"
         }
         if ($SearchString) {
             $path += "searchString=$SearchString&"
