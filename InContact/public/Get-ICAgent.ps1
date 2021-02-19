@@ -15,11 +15,11 @@ function Get-ICAgent {
     )
 
     begin {
-        $url = $PsCmdlet.SessionState.PSVariable.GetValue("_ICUri")
-        $token = $PsCmdlet.SessionState.PSVariable.GetValue("_ICToken")
+        $url = $PsCmdlet.SessionState.PSVariable.GetValue('_ICUri')
+        $token = $PsCmdlet.SessionState.PSVariable.GetValue('_ICToken')
         
         if (!$url -or !$token) {
-            throw "You must call the Connect-IC cmdlet before calling any other cmdlets."
+            throw 'You must call the Connect-IC cmdlet before calling any other cmdlets.'
         }
     
         $headers = @{
