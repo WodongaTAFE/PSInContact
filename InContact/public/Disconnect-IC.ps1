@@ -8,6 +8,6 @@ function Disconnect-IC {
     [CmdletBinding()]
     param()
 
-    $PsCmdlet.SessionState.PSVariable.Remove('_ICUri')
-    $PsCmdlet.SessionState.PSVariable.Remove('_ICToken')
+    Remove-Variable -Scope Script -Name _ICUri
+    Remove-Variable -Scope Script -Name _ICToken
 }

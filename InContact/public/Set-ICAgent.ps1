@@ -47,8 +47,8 @@ function Set-IcAgent {
     )
 
     Begin {
-        $url = $PsCmdlet.SessionState.PSVariable.GetValue("_ICUri")
-        $token = $PsCmdlet.SessionState.PSVariable.GetValue("_ICToken")
+        $url = $Script:_IcUri
+        $token = $Script:_IcToken
         
         if (!$url -or !$token) {
             throw "You must call the Connect-IC cmdlet before calling any other cmdlets."

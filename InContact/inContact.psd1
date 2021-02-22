@@ -12,7 +12,7 @@
     RootModule = 'inContact.psm1'
     
     # Version number of this module.
-    ModuleVersion = '0.1'
+    ModuleVersion = '0.2'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -99,7 +99,7 @@
             Tags = @('incontact')
     
             # A URL to the license for this module.
-            LicenseUri = 'https://github.com/WodongaTAFE/PSInContact/blob/master/LICENSE'
+            LicenseUri = 'https://github.com/WodongaTAFE/PSInContact/blob/main/LICENSE'
     
             # A URL to the main website for this project.
             ProjectUri = 'https://github.com/WodongaTAFE/PSInContact'

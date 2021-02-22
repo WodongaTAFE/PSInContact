@@ -47,7 +47,7 @@ function Connect-IC {
 
     $endpoints  = Invoke-RestMethod -Uri ([uri]::new($Uri, $path))
 
-    $PsCmdlet.SessionState.PSVariable.Set("_IcUri", [uri]::new($endpoints.api_endpoint))
+    $Script:_IcUri = [uri]::new($endpoints.api_endpoint)
 
     $authUri = [uri]::new($endpoints.auth_endpoint)
 
@@ -63,7 +63,7 @@ function Connect-IC {
  
     $result = Invoke-RestMethod -Method Post -Uri ([uri]::new($authUri, $path)) -Body $body -ContentType 'application/json'
     if ($result.access_token) {
-        $PsCmdlet.SessionState.PSVariable.Set("_IcToken", $result.access_token)
+        $Script:_IcToken = $result.access_token
     } else {
         throw "Could not connect to $Uri with the given credentials."
     }    
