@@ -1,4 +1,3 @@
-
 function Get-ICCampaign {
     [CmdletBinding()]
     param (

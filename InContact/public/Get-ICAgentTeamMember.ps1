@@ -1,4 +1,4 @@
-function Get-ICTeamAgent {
+function Get-ICAgentTeamMember {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]

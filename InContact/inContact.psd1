@@ -12,7 +12,7 @@
     RootModule = 'inContact.psm1'
     
     # Version number of this module.
-    ModuleVersion = '0.2'
+    ModuleVersion = '0.3'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -69,7 +69,32 @@
     # NestedModules = @()
     
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-    FunctionsToExport = @('Connect-IC', 'Disconnect-IC', 'Get-ICAddressBook', 'Get-ICAddressBookEntry', 'Get-ICAgent', 'Get-ICAgentSkill', 'Get-ICCallback', 'Get-ICCampaign', 'Get-ICDisposition', 'Get-ICGroup', 'Get-ICProfile', 'Get-ICSkill', 'Get-ICTeam', 'Get-ICTeamAgent', 'New-ICAddressBookEntry', 'New-ICAgentSkill', 'Remove-ICAddressBookEntry', 'Remove-ICAgentSkill', 'Set-ICAddressBookEntry', 'Set-ICAgentSkill')
+    FunctionsToExport = @(
+        'Connect-IC', 
+        'Disconnect-IC', 
+        'Get-ICAddressBook', 
+        'Get-ICAddressBookEntry', 
+        'Get-ICAgent', 
+        'Get-ICAgentSkill', 
+        'Get-ICAgentTeam',
+        'Get-ICAgentTeamMember', 
+        'Get-ICCallback', 
+        'Get-ICCampaign', 
+        'Get-ICDisposition', 
+        'Get-ICGroup', 
+        'Get-ICProfile', 
+        'Get-ICRole',
+        'Get-ICSkill', 
+        'Get-ICTeam', 
+        'Get-ICUser', 
+        'New-ICAddressBookEntry',
+        'New-ICAgentSkill',
+        'New-ICUser',
+        'Remove-ICAddressBookEntry',
+        'Remove-ICAgentSkill',
+        'Set-ICAddressBookEntry',
+        'Set-ICAgentSkill'
+    )
     # add back in when they're ready: 'New-ICAgent', 'Set-ICAgent'
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.

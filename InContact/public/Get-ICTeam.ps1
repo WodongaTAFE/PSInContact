@@ -3,15 +3,15 @@ function Get-ICTeam {
     param (
         [Parameter(Mandatory, Position=0, ValueFromPipelineByPropertyName, ParameterSetName='id')]
         [Alias('Id')]
-        [int] $TeamId,
+        [string] $TeamId,
 
         [Parameter(ParameterSetName='notid')]
         [Alias('Active')]
         [bool] $IsActive,
 
         [Parameter(ParameterSetName='notid')]
-        [Alias('SearchText')]
-        [string] $SearchString
+        [Alias('Default')]
+        [bool] $IsDefault
     )
 
     Begin {
@@ -30,19 +30,31 @@ function Get-ICTeam {
 
     Process {
         if ($TeamId) {
-            $path = "/inContactAPI/services/v20.0/teams/$TeamId"
-        }
+            $path = "/user-management/v1/teams/$TeamId"
+            $uri = [uri]::new($url, $path)
+    
+            (Invoke-RestMethod -Uri $uri -Headers $headers).team
+            }
         else {
-            $path = '/inContactAPI/services/v20.0/teams?'
-            if ($PSBoundParameters.ContainsKey('IsActive')) {
-                $path += "isActive=$IsActive&"
-            }
-            if ($SearchString) {
-                $path += "searchString=$SearchString&"
-            }
-        }
-        $uri = [uri]::new($url, $path)
+            $path = '/user-management/v1/teams/search'
 
-        (Invoke-RestMethod -Uri $uri -Headers $headers).teams
+            $filter = @{
+            }
+
+            if ($PSBoundParameters.ContainsKey('IsActive')) {
+                $filter.status = @( if ($IsActive) { 'ACTIVE' } else { 'INACTIVE' } )
+            }
+            if ($PSBoundParameters.ContainsKey('IsDefault')) {
+                $filter.isDefault = @( $IsDefault )
+            }
+            
+            $body = @{
+                filter = $filter
+            }
+
+            $uri = [uri]::new($url, $path)
+    
+            (Invoke-RestMethod -Method Post -Uri $uri -Headers $headers -ContentType 'application/json' -Body (ConvertTo-Json $body) ).teams
+        }
     }
 }

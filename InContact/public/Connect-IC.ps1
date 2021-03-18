@@ -64,6 +64,8 @@ function Connect-IC {
     $result = Invoke-RestMethod -Method Post -Uri ([uri]::new($authUri, $path)) -Body $body -ContentType 'application/json'
     if ($result.access_token) {
         $Script:_IcToken = $result.access_token
+        Write-Verbose $Script:_IcUri
+        Write-Verbose $Script:_IcToken
     } else {
         throw "Could not connect to $Uri with the given credentials."
     }    
