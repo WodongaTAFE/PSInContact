@@ -1,6 +1,10 @@
-function New-IcUser {
+function Set-IcUser {
     [CmdletBinding(SupportsShouldProcess)]
     param (
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('Id')]
+        [string] $UserId,
+
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         [string] $FirstName,
         
@@ -32,7 +36,7 @@ function New-IcUser {
         [string] $TeamId,
 
         [Parameter(ValueFromPipelineByPropertyName)]
-        [datetime] $HireDate,
+        [nullable[datetime]] $HireDate,
         
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         [string] $Username,
@@ -60,14 +64,12 @@ function New-IcUser {
             firstName = $FirstName
             lastName = $LastName
             emailAddress = $EmailAddress
-            mobileNumber = $MobileNumber
             assignedGroup = $AssignedGroup
             rank = $Rank
             country = $Country
             timeZone = $TimeZone
             role = $Role
             teamId = $TeamId
-            hireDate = $HireDate
             userName = $Username
             externalIdentity = $ExternalIdentity
         }
@@ -80,11 +82,21 @@ function New-IcUser {
             }
         }
 
+        $user.id = $UserId
+
+        if ($HireDate) {
+            $user.hireDate = $HireDate.ToString('o')
+        }
+        if ($MobileNumber) {
+            $user.mobileNumber = $MobileNumber
+        }
+
         $path = "/user-management/v1/users"
         $uri = [uri]::new($url, $path)
 
-        if ($PSCmdlet.ShouldProcess($Username, "Adding user")) {
-            Invoke-RestMethod -Method Post -Uri $uri -Headers $headers -Body (ConvertTo-Json $user) -ContentType 'application/json' 
+        ConvertTo-Json $user
+        if ($PSCmdlet.ShouldProcess($Username, "Updating user")) {
+            Invoke-RestMethod -Method Put -Uri $uri -Headers $headers -Body (ConvertTo-Json $user) -ContentType 'application/json' 
         }
      }
 }

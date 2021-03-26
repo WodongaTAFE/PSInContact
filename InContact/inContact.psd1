@@ -12,7 +12,7 @@
     RootModule = 'inContact.psm1'
     
     # Version number of this module.
-    ModuleVersion = '0.3'
+    ModuleVersion = '0.4'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -93,7 +93,8 @@
         'Remove-ICAddressBookEntry',
         'Remove-ICAgentSkill',
         'Set-ICAddressBookEntry',
-        'Set-ICAgentSkill'
+        'Set-ICAgentSkill',
+        'Set-ICUser'
     )
     # add back in when they're ready: 'New-ICAgent', 'Set-ICAgent'
 
