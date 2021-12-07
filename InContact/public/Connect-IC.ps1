@@ -1,9 +1,9 @@
 <#
 .SYNOPSIS
-Connects to an inContact instance.
+Connects to an inContact Userhub instance.
 
 .DESCRIPTION
-Call Connect-Ic to connect to an inContact instance (using its URL and credentials) before calling other inContact cmdlets.
+Call Connect-Ic to connect to an inContact Userhub instance (using its URL and credentials) before calling other inContact cmdlets. Identify your URI via https://developer.niceincontact.com/Documentation/UserHubGettingStarted
 
 .PARAMETER Uri
 The base URI of the inContact instance domain.
