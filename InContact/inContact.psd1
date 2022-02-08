@@ -12,7 +12,7 @@
     RootModule = 'inContact.psm1'
     
     # Version number of this module.
-    ModuleVersion = '0.4'
+    ModuleVersion = '0.41'
     
     # Supported PSEditions
     # CompatiblePSEditions = @()
@@ -80,6 +80,7 @@
         'Get-ICAgentTeamMember', 
         'Get-ICCallback', 
         'Get-ICCampaign', 
+        'Get-ICContact', 
         'Get-ICDisposition', 
         'Get-ICGroup', 
         'Get-ICProfile', 
@@ -87,16 +88,27 @@
         'Get-ICSkill', 
         'Get-ICTeam', 
         'Get-ICUser', 
+        'Get-ICUnassignedPhoneNumbers',
+        'Get-ICHoursofOperation',
+        'Get-ICPointOfContact',
         'New-ICAddressBookEntry',
         'New-ICAgentSkill',
         'New-ICUser',
+        'New-ICHoursOfOperation',
+        'New-ICAgent',
+        'New-ICPointOfContact',
+        'New-ICSkill',
         'Remove-ICAddressBookEntry',
         'Remove-ICAgentSkill',
+		'Remove-ICContact',
         'Set-ICAddressBookEntry',
+        'Set-ICAgent',
         'Set-ICAgentSkill',
-        'Set-ICUser'
+        'Set-ICSkill',
+        'Set-ICUser',
+        'Set-ICHoursOfOperation',
+        'Set-ICPointOfContact'
     )
-    # add back in when they're ready: 'New-ICAgent', 'Set-ICAgent'
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     CmdletsToExport = @()
@@ -147,5 +159,4 @@
     # DefaultCommandPrefix = ''
     
     }
-    
     
