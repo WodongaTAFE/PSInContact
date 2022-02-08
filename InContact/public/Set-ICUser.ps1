@@ -1,4 +1,4 @@
-function Set-IcUser {
+function Set-ICUser {
     [CmdletBinding(SupportsShouldProcess)]
     param (
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
