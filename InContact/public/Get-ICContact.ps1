@@ -1,12 +1,7 @@
-function Get-ICAgentTeamMember {
+function Get-ICContact {
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
-        [string] $TeamId,
-
-        [Alias('SearchText')]
-        [string] $SearchString
-    )
+           )
 
     Begin {
         $url = $Script:_IcUri
@@ -23,12 +18,10 @@ function Get-ICAgentTeamMember {
     }
 
     Process {
-        $path = "/inContactAPI/services/v20.0/teams/$TeamId/agents?"
-        if ($SearchString) {
-            $path += "searchString=$SearchString&"
-        }
+        $path = '/inContactAPI/services/v23.0/contacts/active'
         $uri = [uri]::new($url, $path)
 
-        (Invoke-RestMethod -Uri $uri -Headers $headers).teams.agents
+#        (Invoke-RestMethod -Uri $uri -Headers $headers).activeContacts
+        (Invoke-RestMethod -Uri $uri -Headers $headers)
     }
 }

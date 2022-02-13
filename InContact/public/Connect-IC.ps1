@@ -37,7 +37,9 @@ BASE64 encoded string used for the OAUTH2 token retrevial in Central.
 Specifically, base64 encoding of AppName@VendorName:BusinessUnitNumber
 API Application Generation Link: https://help.incontact.com/Content/ACD/APIApplications/APIApplications.htm
 
-.EXAMPLE
+.EXAMPLE 
+
+
 
 Connect-Ic https://au1.nice-incontact.com -Credential (Get-Credential)
 
@@ -47,6 +49,10 @@ Prompts for your username and password, then connects to the au1 inContact insta
 
 Connect-Ic -Central -Credential (Get-Credential) -Key "QXBwTmFtZUBWZW5kb3JOYW1lOkJ1c2luZXNzVW5pdE51bWJlcg=="
 
+Key = BASE64 encoded string used for the OAUTH2 token retrevial in Central. 
+
+Specifically, base64 encoding of AppName@VendorName:BusinessUnitNumber
+API Application Generation Link: https://help.incontact.com/Content/ACD/APIApplications/APIApplications.htm
 
 .NOTES
 See also: Disconnect-Ic.
@@ -83,9 +89,6 @@ function Connect-IC {
     # Extract plain text password from credential
     $marshal = [Runtime.InteropServices.Marshal]
     $password = $marshal::PtrToStringAuto( $marshal::SecureStringToBSTR($Credential.Password) )
-    
-
-    write-host $Credential.UserName
 
 
 

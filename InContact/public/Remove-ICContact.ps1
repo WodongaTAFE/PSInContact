@@ -1,11 +1,9 @@
-function Remove-ICAddressBookEntry {
+function Remove-ICContact {
     [CmdletBinding(SupportsShouldProcess)]
     param (
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
-        [int] $AddressBookId,
+        [string] $ContactID
 
-        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
-        [string] $AddressBookEntryId
     )
 
     Begin {
@@ -23,11 +21,11 @@ function Remove-ICAddressBookEntry {
     }
 
     Process {
-        $path = "/inContactAPI/services/v20.0/address-books/$AddressBookId/entries/$AddressBookEntryId"
+        $path = "/inContactAPI/services/v23.0/contacts/$contactId/end"
         $uri = [uri]::new($url, $path)
 
-        if ($PSCmdlet.ShouldProcess("Address book $AddressBookId", "Removing entry $AddressBookEntryId")) {
-            Invoke-RestMethod -Method Delete -Uri $uri -Headers $headers
+        if ($PSCmdlet.ShouldProcess("Attempting to terminate Contact ID", "Removing entry $ContactID")) {
+            Invoke-RestMethod -Method Post -Uri $uri -Headers $headers
         }
     }
 }

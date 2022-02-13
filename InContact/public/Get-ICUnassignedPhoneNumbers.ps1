@@ -1,11 +1,9 @@
-function Get-ICAgentTeamMember {
+function Get-ICUnassignedPhoneNumbers {
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
-        [string] $TeamId,
-
-        [Alias('SearchText')]
-        [string] $SearchString
+        [Parameter(Position=0)]
+        [Alias('search')]
+        [string] $searchString
     )
 
     Begin {
@@ -23,12 +21,12 @@ function Get-ICAgentTeamMember {
     }
 
     Process {
-        $path = "/inContactAPI/services/v20.0/teams/$TeamId/agents?"
-        if ($SearchString) {
-            $path += "searchString=$SearchString&"
+        $path = '/inContactAPI/services/v23.0/phone-numbers'
+        if($searchString){
+            $path = $path + "?searchString=$searchString"
         }
         $uri = [uri]::new($url, $path)
 
-        (Invoke-RestMethod -Uri $uri -Headers $headers).teams.agents
+        (Invoke-RestMethod -Uri $uri -Headers $headers).phoneNumbers
     }
 }

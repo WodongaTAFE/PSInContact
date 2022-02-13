@@ -30,10 +30,10 @@ function Get-ICAgent {
 
     process {
         if ($AgentId) {
-            $path = "/inContactAPI/services/v20.0/agents/$AgentId"
+            $path = "/inContactAPI/services/v23.0/agents/$AgentId"
         }
         else {
-            $path = '/inContactAPI/services/v20.0/agents?'
+            $path = '/inContactAPI/services/v23.0/agents?'
             if ($PSBoundParameters.ContainsKey('IsActive')) {
                 $path += "isActive=$IsActive&"
             }
